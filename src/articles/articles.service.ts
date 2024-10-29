@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
+
+import { UsersService } from '../users/users.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class ArticlesService {
-  create(createArticleDto: CreateArticleDto) {
+  constructor(private readonly userService: UsersService) {}
+
+  create(dto: CreateArticleDto) {
+    this.userService.checkAbilityToEditArticle('authorId', 'articleId');
     return 'This action adds a new article';
   }
 
