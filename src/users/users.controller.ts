@@ -4,24 +4,17 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
 } from '@nestjs/common';
-import {
-  ApiBearerAuth,
-  ApiConflictResponse,
-  ApiForbiddenResponse,
-  ApiNotFoundResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiUnauthorizedResponse,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConflictResponse } from '@nestjs/swagger';
 
-import { CreateUserReqDto } from './dto/req/create-user.req.dto';
-import { UpdateUserReqDto } from './dto/req/update-user.req.dto';
-import { UserListDto } from './dto/req/user-list.dto';
-import { UserResDto } from './dto/res/user.res.dto';
+import { CreateUserReqDto } from './models/dto/req/create-user.req.dto';
+import { UpdateUserReqDto } from './models/dto/req/update-user.req.dto';
+import { UserListDto } from './models/dto/req/user-list.dto';
+import { UserResDto } from './models/dto/res/user.res.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -49,7 +42,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.findOne(+id);
   }
 
