@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { SwaggerHelper } from './common/helpers/swagger.helper';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,8 +18,9 @@ async function bootstrap() {
       bearerFormat: 'JWT',
     })
     .build();
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, documentFactory, {
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerHelper.setDefaultResponses(document);
+  SwaggerModule.setup('docs', app, document, {
     swaggerOptions: {
       docExpansion: 'none', //як буде розгорнуто чи згорното swagger
       defaultModelsExpandDepth: 7,
