@@ -41,7 +41,7 @@ async function bootstrap() {
   const port = 3000;
   const host = 'localhost';
 
-  await app.listen(3000, () => {
+  await app.listen(port, () => {
     console.log(`Server started on http://${host}:${port}`);
     console.log(`Swagger server started on http://${host}:${port}/docs`);
   });
