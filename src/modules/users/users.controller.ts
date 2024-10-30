@@ -15,7 +15,7 @@ import { CreateUserReqDto } from './models/dto/req/create-user.req.dto';
 import { UpdateUserReqDto } from './models/dto/req/update-user.req.dto';
 import { UserListDto } from './models/dto/req/user-list.dto';
 import { UserResDto } from './models/dto/res/user.res.dto';
-import { UsersService } from './users.service';
+import { UsersService } from './services/users.service';
 
 @Controller('users')
 export class UsersController {
