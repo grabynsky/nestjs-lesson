@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import { AppConfig, Config } from '../../../configs/config.type';
 import { CreateUserReqDto } from '../models/dto/req/create-user.req.dto';
 import { UpdateUserReqDto } from '../models/dto/req/update-user.req.dto';
 import { UserResDto } from '../models/dto/res/user.res.dto';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UsersService {
