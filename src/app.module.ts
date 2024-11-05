@@ -11,6 +11,7 @@ import { PostgresModule } from './modules/postgres/postgres.module';
 import { RedisModule } from './modules/redis/redis.module';
 import { UsersModule } from './modules/users/users.module';
 import { LoggerModule } from './modules/logger/logger.module';
+import { RepositoryModule } from './modules/repository/repository.module';
 
 @ApiTags('Users')
 @Module({
@@ -20,6 +21,7 @@ import { LoggerModule } from './modules/logger/logger.module';
       isGlobal: true,
     }),
     LoggerModule,
+    RepositoryModule,
     PostgresModule, //connect database
     RedisModule,
     UsersModule,
