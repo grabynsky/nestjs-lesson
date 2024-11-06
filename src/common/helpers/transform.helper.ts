@@ -3,7 +3,7 @@ export class TransformHelper {
     return value ? value.toString().toLowerCase() : value;
   }
 
-  public static toTrim({ value }: { value: string }): string {
+  public static trim({ value }: { value: string }): string {
     return value ? value.toString().trim() : value;
   }
 }
