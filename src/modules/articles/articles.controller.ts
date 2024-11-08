@@ -19,10 +19,10 @@ import { UpdateArticleDto } from './models/dto/req/update-article.dto';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
-  @Post()
-  create(@Body() dto: CreateArticleDto) {
-    return this.articlesService.create(dto);
-  }
+  // @Post()
+  // create(@Body() dto: CreateArticleDto) {
+  //   return this.articlesService.create(dto);
+  // }
 
   @Get()
   findAll() {

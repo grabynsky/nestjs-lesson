@@ -12,10 +12,10 @@ export class ArticlesService {
     private readonly commentsService: CommentsService,
   ) {}
 
-  create(dto: CreateArticleDto) {
-    this.userService.checkAbilityToEditArticle('authorId', 'articleId');
-    return 'This action adds a new article';
-  }
+  // create(dto: CreateArticleDto) {
+  //   this.userService.checkAbilityToEditArticle('authorId', 'articleId');
+  //   return 'This action adds a new article';
+  // }
 
   findAll() {
     return `This action returns all articles`;
