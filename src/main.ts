@@ -2,21 +2,17 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as Sentry from '@sentry/nestjs';
-import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 import { AppModule } from './app.module';
 import { SwaggerHelper } from './common/helpers/swagger.helper';
 import { AppConfig } from './configs/config.type';
 
 async function bootstrap() {
-
-
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('March-2024 NestJS')
-    .setDescription('March-2024 NestJS API description')
+    .setDescription('The cats API description')
     .setVersion('1.0')
     .addBearerAuth({
       in: 'header',
@@ -28,8 +24,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      transform: true,
       whitelist: true,
+      transform: false,
       forbidNonWhitelisted: true,
     }),
   );
@@ -38,20 +34,21 @@ async function bootstrap() {
   SwaggerHelper.setDefaultResponses(document);
   SwaggerModule.setup('docs', app, document, {
     swaggerOptions: {
-      docExpansion: 'none', //як буде розгорнуто чи згорното swagger
+      docExpansion: 'list',
       defaultModelsExpandDepth: 7,
-      persistAuthorization: true, // Це для збереження токена
+      persistAuthorization: true,
     },
   });
-
   const configService = app.get(ConfigService);
   const appConfig = configService.get<AppConfig>('app');
-
   await app.listen(appConfig.port, () => {
-    console.log(`Server started on http://${appConfig.host}:${appConfig.port}`);
     console.log(
-      `Swagger server started on  http://${appConfig.host}:${appConfig.port}/docs`,
+      `Server is running on http://${appConfig.host}:${appConfig.port}`,
+    );
+    console.log(
+      `Swagger is running on http://${appConfig.host}:${appConfig.port}/docs`,
     );
   });
+  console.log();
 }
 void bootstrap();

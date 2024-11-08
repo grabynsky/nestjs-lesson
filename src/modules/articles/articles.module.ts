@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 
+import { CommentsModule } from '../comments/comments.module';
 import { UsersModule } from '../users/users.module';
 import { ArticlesController } from './articles.controller';
 import { ArticlesService } from './services/articles.service';
-import { CommentsModule } from '../comments/comments.module';
 
 @Module({
-  imports: [UsersModule, CommentsModule],
+  imports: [CommentsModule, UsersModule],
   controllers: [ArticlesController],
   providers: [ArticlesService],
 })

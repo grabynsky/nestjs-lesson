@@ -7,9 +7,9 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+import { FollowID, UserID } from '../../common/types/entity-ids.type';
 import { TableNameEnum } from './enums/table-name.enum';
 import { UserEntity } from './user.entity';
-import { FollowID, UserID } from '../../common/types/entity-ids.type';
 
 @Entity(TableNameEnum.FOLLOW)
 export class FollowEntity {
@@ -17,7 +17,7 @@ export class FollowEntity {
   id: FollowID;
 
   @CreateDateColumn()
-  created: string;
+  created: Date;
 
   @Column()
   follower_id: UserID;
@@ -27,7 +27,7 @@ export class FollowEntity {
 
   @Column()
   following_id: UserID;
-  @ManyToOne(() => UserEntity, (entity) => entity.following)
+  @ManyToOne(() => UserEntity, (entity) => entity.followings)
   @JoinColumn({ name: 'following_id' })
   following?: UserEntity;
 }

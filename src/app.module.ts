@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
-import { ApiTags } from '@nestjs/swagger';
 
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import configuration from './configs/configuration';
@@ -14,7 +13,6 @@ import { RedisModule } from './modules/redis/redis.module';
 import { RepositoryModule } from './modules/repository/repository.module';
 import { UsersModule } from './modules/users/users.module';
 
-@ApiTags('Users')
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,15 +21,14 @@ import { UsersModule } from './modules/users/users.module';
     }),
     LoggerModule,
     RepositoryModule,
-    PostgresModule, //connect database
+    PostgresModule,
     RedisModule,
 
     AuthModule,
-    UsersModule,
     ArticlesModule,
+    UsersModule,
     CommentsModule,
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_FILTER,

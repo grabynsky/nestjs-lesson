@@ -21,7 +21,7 @@ export class CommentEntity extends CreateUpdateModel {
   @PrimaryGeneratedColumn('uuid')
   id: CommentID;
 
-  @Column({ type: 'text' })
+  @Column('text')
   body: string;
 
   @Column()
@@ -35,7 +35,7 @@ export class CommentEntity extends CreateUpdateModel {
   @Column()
   user_id: UserID;
   @ManyToOne(() => UserEntity, (entity) => entity.comments, {
-    onDelete: 'CASCADE',
+    onDelete: 'SET NULL',
   })
   @JoinColumn({ name: 'user_id' })
   user?: UserEntity;

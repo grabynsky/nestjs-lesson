@@ -1,5 +1,6 @@
-import { Config } from './config.type';
 import * as process from 'node:process';
+
+import { Config } from './config.type';
 
 export default (): Config => ({
   app: {
@@ -23,7 +24,7 @@ export default (): Config => ({
     secretKey: process.env.AWS_SECRET_KEY,
   },
   sentry: {
-    dsn: process.env.SENTRY_DNS,
+    dsn: process.env.SENTRY_DSN,
     env: process.env.SENTRY_ENV,
     debug: process.env.SENTRY_DEBUG === 'true',
   },

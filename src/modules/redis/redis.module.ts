@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 
-import { RedisConfig } from '../../configs/config.type';
+import { Config, RedisConfig } from '../../configs/config.type';
 import { REDIS_CLIENT } from './models/redis.constants';
 import { RedisService } from './services/redis.service';
 
@@ -10,7 +10,7 @@ import { RedisService } from './services/redis.service';
   providers: [
     {
       provide: REDIS_CLIENT,
-      useFactory: (configService: ConfigService) => {
+      useFactory: (configService: ConfigService<Config>) => {
         const config = configService.get<RedisConfig>('redis');
         return new Redis({
           port: config.port,

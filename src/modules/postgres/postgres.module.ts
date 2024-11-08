@@ -1,16 +1,16 @@
 import * as path from 'node:path';
+import * as process from 'node:process';
 
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DatabaseConfig } from '../../configs/config.type';
+import { Config, DatabaseConfig } from '../../configs/config.type';
 
 @Module({
   imports: [
-    //connect database
     TypeOrmModule.forRootAsync({
-      useFactory: (configService: ConfigService) => {
+      useFactory: (configService: ConfigService<Config>) => {
         const config = configService.get<DatabaseConfig>('database');
         return {
           type: 'postgres',
@@ -46,7 +46,5 @@ import { DatabaseConfig } from '../../configs/config.type';
       inject: [ConfigService],
     }),
   ],
-  controllers: [],
-  providers: [],
 })
 export class PostgresModule {}

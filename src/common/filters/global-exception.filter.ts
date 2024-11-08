@@ -9,7 +9,7 @@ import { Request, Response } from 'express';
 
 import { LoggerService } from '../../modules/logger/logger.service';
 
-@Catch(HttpException)
+@Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   constructor(private readonly logger: LoggerService) {}
 
@@ -29,14 +29,14 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       messages = exception.message;
     } else {
       status = 500;
-      messages = 'Internal Server Error';
+      messages = 'Internal server error';
       this.logger.error(exception);
     }
 
     this.logger.error(exception);
-
     response.status(status).json({
       statusCode: status,
+      messages: Array.isArray(messages) ? messages : [messages],
       timestamp: new Date().toISOString(),
       path: request.url,
     });

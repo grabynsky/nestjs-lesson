@@ -4,7 +4,6 @@ const pathMethods = ['get', 'post', 'put', 'delete', 'patch'];
 
 const generalResponses = {
   400: { description: 'Bad Request' },
-  404: { description: 'Not Found' },
   422: { description: 'Unprocessable Entity' },
   500: { description: 'Internal Server Error' },
 };

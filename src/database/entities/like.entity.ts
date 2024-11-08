@@ -7,10 +7,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { ArticleEntity } from './article.entity';
-import { UserEntity } from './user.entity';
-import { TableNameEnum } from './enums/table-name.enum';
 import { ArticleID, LikeID, UserID } from '../../common/types/entity-ids.type';
+import { ArticleEntity } from './article.entity';
+import { TableNameEnum } from './enums/table-name.enum';
+import { UserEntity } from './user.entity';
 
 @Entity(TableNameEnum.LIKES)
 export class LikeEntity {
@@ -21,14 +21,14 @@ export class LikeEntity {
   created: Date;
 
   @Column()
-  article_id: ArticleID;
-  @ManyToOne(() => ArticleEntity, (entity) => entity.likes)
-  @JoinColumn({ name: 'article_id' })
-  article?: ArticleEntity;
-
-  @Column()
   user_id: UserID;
   @ManyToOne(() => UserEntity, (entity) => entity.likes)
   @JoinColumn({ name: 'user_id' })
   user?: UserEntity;
+
+  @Column()
+  article_id: ArticleID;
+  @ManyToOne(() => ArticleEntity, (entity) => entity.likes)
+  @JoinColumn({ name: 'article_id' })
+  article?: ArticleEntity;
 }

@@ -4,7 +4,7 @@ import { CreateCommentDto } from '../models/dto/req/create-comment.dto';
 
 @Injectable()
 export class CommentsService {
-  create(dto: CreateCommentDto) {
+  create(createCommentDto: CreateCommentDto) {
     return 'This action adds a new comment';
   }
 
@@ -12,5 +12,7 @@ export class CommentsService {
     return `This action returns all comments`;
   }
 
-  public async deleteAllCommentsForArticle(articleId: string) {}
+  public async deleteAllCommentsForArticle(articleId: string) {
+    // Delete all comments for the article
+  }
 }

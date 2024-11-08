@@ -12,25 +12,24 @@ export class ArticlesService {
     private readonly commentsService: CommentsService,
   ) {}
 
-  // create(dto: CreateArticleDto) {
-  //   this.userService.checkAbilityToEditArticle('authorId', 'articleId');
-  //   return 'This action adds a new article';
-  // }
+  create(dto: CreateArticleDto) {
+    return 'This action adds a new user';
+  }
 
   findAll() {
-    return `This action returns all articles`;
+    return `This action returns all users`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} article`;
+    return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`;
+  update(id: number, updateUserDto: UpdateArticleDto) {
+    return `This action updates a #${id} user`;
   }
 
   remove(id: number) {
     this.commentsService.deleteAllCommentsForArticle('articleId');
-    return `This action removes a #${id} article`;
+    return `This action removes a #${id} user`;
   }
 }

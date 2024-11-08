@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
+import { UserID } from '../../common/types/entity-ids.type';
 import { ArticleEntity } from './article.entity';
 import { CommentEntity } from './comment.entity';
 import { TableNameEnum } from './enums/table-name.enum';
@@ -7,23 +8,22 @@ import { FollowEntity } from './follow.entity';
 import { LikeEntity } from './like.entity';
 import { CreateUpdateModel } from './models/create-update.model';
 import { RefreshTokenEntity } from './refresh-token.entity';
-import { UserID } from '../../common/types/entity-ids.type';
 
 @Entity(TableNameEnum.USERS)
 export class UserEntity extends CreateUpdateModel {
   @PrimaryGeneratedColumn('uuid')
   id: UserID;
 
-  @Column({ type: 'text' })
+  @Column('text')
   name: string;
 
-  @Column({ type: 'text', unique: true })
+  @Column('text', { unique: true })
   email: string;
 
-  @Column({ type: 'text' })
+  @Column('text', { select: false })
   password: string;
 
-  @Column({ type: 'boolean', default: true })
+  @Column('boolean', { default: true })
   isActive: boolean;
 
   @Column('text', { nullable: true })
@@ -38,15 +38,15 @@ export class UserEntity extends CreateUpdateModel {
   @OneToMany(() => ArticleEntity, (entity) => entity.user)
   articles?: ArticleEntity[];
 
-  @OneToMany(() => CommentEntity, (entity) => entity.user)
-  comments?: CommentEntity[];
-
   @OneToMany(() => LikeEntity, (entity) => entity.user)
   likes?: LikeEntity[];
+
+  @OneToMany(() => CommentEntity, (entity) => entity.user)
+  comments?: CommentEntity[];
 
   @OneToMany(() => FollowEntity, (entity) => entity.follower)
   followers?: FollowEntity[];
 
   @OneToMany(() => FollowEntity, (entity) => entity.following)
-  following?: FollowEntity[];
+  followings?: FollowEntity[];
 }

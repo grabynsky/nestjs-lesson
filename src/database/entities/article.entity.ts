@@ -21,20 +21,20 @@ export class ArticleEntity extends CreateUpdateModel {
   @PrimaryGeneratedColumn('uuid')
   id: ArticleID;
 
-  @Column({ type: 'text' })
+  @Column('text')
   title: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column('text', { nullable: true })
   description?: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column('text', { nullable: true })
   body?: string;
 
   @OneToMany(() => LikeEntity, (entity) => entity.article)
   likes?: LikeEntity[];
 
   @OneToMany(() => CommentEntity, (entity) => entity.article)
-  comments?: CommentEntity;
+  comments?: CommentEntity[];
 
   @Column()
   user_id: UserID;
