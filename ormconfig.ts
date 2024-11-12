@@ -6,6 +6,7 @@ import { DataSource } from 'typeorm';
 import configuration from './src/configs/configuration';
 
 dotenv.config();
+
 const config = configuration().database;
 
 export default new DataSource({
